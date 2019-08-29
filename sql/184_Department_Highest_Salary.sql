@@ -28,3 +28,17 @@ from Department as a, (
 ) b
 where a.Id = b.DepartmentId
 ;
+
+
+-- 思路一样，但是直接三表联结
+select b.Name as Department, a.Name as Employee, a.Salary
+from Employee a, Department b, (
+    select DepartmentId, Max(Salary) as Salary
+    from Employee
+    group by DepartmentId
+) c
+where a.Salary = c.Salary
+    and a.DepartmentId = c.DepartmentId
+    and a.DepartmentId = b.Id
+;
+
