@@ -15,3 +15,16 @@ from Department as b,
 where b.Id = a.DepartmentId
 ;
 
+-- 相对来说更优解，其实差不多，两个字段的in用法，学着点
+select a.Name as Department, b.Name as Employee, b.Salary
+from Department as a, (
+    select DepartmentId, Salary, Name
+    from Employee
+    where (DepartmentId, Salary) in (
+        select DepartmentId, Max(Salary)
+        from Employee
+        group by DepartmentId
+    )
+) b
+where a.Id = b.DepartmentId
+;
