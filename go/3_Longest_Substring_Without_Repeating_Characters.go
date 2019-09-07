@@ -1,4 +1,7 @@
 func lengthOfLongestSubstring(s string) int {
+    if s == "" {
+        return 0
+    }
     max := 0
     l := make([]byte, 0)
     var c string
@@ -20,4 +23,3 @@ func lengthOfLongestSubstring(s string) int {
     }
     return max
 }
-
