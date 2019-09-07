@@ -2,24 +2,29 @@ func lengthOfLongestSubstring(s string) int {
     if s == "" {
         return 0
     }
-    max := 0
-    l := make([]byte, 0)
-    var c string
-    for i := 0; i < len(s); i++ {
-        j := strings.Index(c, string(s[i]))
-        if j == -1 {
-            l = append(l, s[i])
-            c = string(l)
-            if lens := len(l); max < lens {
-                max = lens
+
+    x, y := 0, 0
+    max := 1
+    for i := 1; i < len(s); i++ {
+        isRepeat := false
+        for j := x; j <= y; j++ {
+            if s[i] != s[j] {
+                continue
             }
-            continue
+            x, y = j + 1, i
+            if max < y - x + 1 {
+                max = y - x + 1
+            }
+            isRepeat = true
+            break
         }
-        l = append(l[j + 1:], l[j])
-        c = string(l)
-        if lens := len(l); max < lens {
-            max = lens
+        if !isRepeat {
+            y = i
+            if max < y - x + 1 {
+                max = y - x + 1
+            }
         }
     }
     return max
 }
+
