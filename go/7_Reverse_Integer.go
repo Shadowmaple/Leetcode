@@ -1,3 +1,5 @@
+package leetcode
+
 func reverse(x int) int {
     if x <= 9 && x >= -9 {
         return x
@@ -15,4 +17,3 @@ func reverse(x int) int {
     }
     return y
 }
-

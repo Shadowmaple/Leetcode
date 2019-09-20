@@ -1,3 +1,5 @@
+package leetcode
+
 func lengthOfLongestSubstring(s string) int {
     if s == "" {
         return 0
@@ -27,4 +29,3 @@ func lengthOfLongestSubstring(s string) int {
     }
     return max
 }
-
