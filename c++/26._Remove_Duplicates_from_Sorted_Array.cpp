@@ -1,4 +1,3 @@
-# include <iostream>
 # include <vector>
 
 using namespace std;
@@ -22,7 +21,3 @@ public:
         return count;
     }
 };
-
-int main() {
-
-}
