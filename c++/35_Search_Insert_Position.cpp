@@ -9,12 +9,16 @@ public:
             return 0;
         if (nums.at(n - 1) < target)
             return n;
-        int i = 0;
-        for (; i < nums.size(); i++) {
-            if (target <= nums.at(i)) {
-                break;
-            }
+        int left = 0, right = n - 1, mid;
+        while (left <= right) {
+            mid = (left + right) / 2;
+            if (nums.at(mid) == target)
+                return mid;
+            else if (nums.at(mid) < target)
+                left++;
+            else
+                right--;
         }
-        return i;
+        return mid;
     }
 };
