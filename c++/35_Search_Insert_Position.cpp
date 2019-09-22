@@ -15,10 +15,10 @@ public:
             if (nums.at(mid) == target)
                 return mid;
             else if (nums.at(mid) < target)
-                left++;
+                left = mid + 1;
             else
-                right--;
+                right = mid - 1;
         }
-        return mid;
+        return left;
     }
 };
