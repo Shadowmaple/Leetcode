@@ -3,7 +3,31 @@
 # include <cstring>
 using namespace std;
 
+// C++方法，应用string类，更简洁
 class Solution {
+public:
+    string countAndSay(int n) {
+        string num = "1";
+        while (n-- > 1) {
+            int count = 1;
+            string replace = "";
+            for (int i = 0; i < num.length(); i++) {
+                if (num[i] == num[i+1]) {
+                    count++;
+                    continue;
+                }
+                replace += count + '0';
+                replace += num[i];
+                count = 1;
+            }
+            num = replace;
+        }
+        return num;
+    }
+};
+
+// C语言方法，0ms，空间复杂度更小
+class Solution2 {
 public:
     string countAndSay(int n) {
         char num[5000] = "1", replace[5000];
