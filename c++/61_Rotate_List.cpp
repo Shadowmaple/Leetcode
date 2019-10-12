@@ -9,7 +9,7 @@ struct ListNode {
  };
 
 // 每次向右移动一位，移动k次
-// 81.95%时间用户，75.89空间用户
+// 81.95%时间用户，75.89%空间用户
 class Solution {
 public:
     ListNode* rotateRight(ListNode* head, int k) {
@@ -32,6 +32,33 @@ public:
             head = p->next;
             p->next = NULL;
         }
+
+        return head;
+    }
+};
+
+// 环链
+// 81.95%时间用户，99.68%空间用户
+class Solution2 {
+public:
+    ListNode* rotateRight(ListNode* head, int k) {
+        if (head == NULL || head->next == NULL)
+            return head;
+
+        ListNode *p = head;
+        int len = 1;
+        while (p->next != NULL) {
+            p = p->next;
+            len++;
+        }
+        k %= len;
+        p->next = head;
+
+        p = head;
+        for (int i=0; i < len - k - 1; i++)
+            p = p->next;
+        head = p->next;
+        p->next = NULL;
 
         return head;
     }
