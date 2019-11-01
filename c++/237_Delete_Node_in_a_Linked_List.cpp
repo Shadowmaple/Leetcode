@@ -12,7 +12,9 @@ struct ListNode {
 class Solution {
 public:
     void deleteNode(ListNode* node) {
-        node->val = node->next->val;
-        node->next = node->next->next;
+        ListNode *p = node->next;
+        node->val = p->val;
+        node->next = p->next;
+        delete p;
     }
 };
