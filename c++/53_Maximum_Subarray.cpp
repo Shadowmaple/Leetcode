@@ -1,6 +1,8 @@
+# include <iostream>
 # include <vector>
 using namespace std;
 
+// 暴力法，很low，O(n^2)
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
@@ -14,5 +16,19 @@ public:
             }
         }
         return max;
+    }
+};
+
+// 贪心算法，O(n)
+class Solution2 {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int result = nums[0], sum = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            sum += nums[i];
+            result = max(result, sum);
+            if (sum < 0) sum = 0;
+        }
+        return result;
     }
 };
