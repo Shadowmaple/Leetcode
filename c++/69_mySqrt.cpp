@@ -1,6 +1,7 @@
 # include <iostream>
 using namespace std;
 
+// 二分法
 class Solution {
 public:
     int mySqrt(int x) {
@@ -8,7 +9,7 @@ public:
         int left = 1, right = x / 2 + 1, mid;
         while (left <= right) {
             mid = (left + right) / 2;
-            if (mid < x / mid)
+            if (mid <= x / mid)
                 left = mid + 1;
             else
                 right = mid - 1;
