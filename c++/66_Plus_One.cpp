@@ -17,11 +17,8 @@ public:
             return digits;
         }
 
-        vector<int> d;
-        d.push_back(flag);
-        for (int i=0; i < digits.size(); i++) {
-            d.push_back(digits.at(i));
-        }
-        return d;
+        digits.push_back(0);
+        digits.at(0) = 1;
+        return digits;
     }
 };
