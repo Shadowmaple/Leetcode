@@ -16,3 +16,16 @@ public:
         return right;
     }
 };
+
+// 牛顿迭代法
+class Solution2 {
+public:
+    int mySqrt(int x) {
+        if (!x) return 0;
+        long n = x;
+        while (n > x / n) {
+            n = (n + (x / n)) / 2; //公式
+        }
+        return int(n);
+    }
+};
