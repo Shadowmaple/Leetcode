@@ -18,14 +18,15 @@ public:
         char cur = '(';
         while (1) {
             if (!left && !right) {
+                // 获取匹配串
                 string s;
-                for (int i = 0; i < sk.size(); i++) {
+                for (int i = 0; i < sk.size(); i++)
                     s += sk.at(i);
-                }
                 if (s[s.length()-1] != '(' && isValid(s))
                     v.push_back(s);
                 s.clear();
 
+                // 回溯
                 do {
                     cur = sk.at(sk.size()-1);
                     sk.pop_back();
