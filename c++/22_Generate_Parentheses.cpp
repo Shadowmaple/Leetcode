@@ -63,6 +63,28 @@ public:
     }
 };
 
+// 递归回溯，值得体会
+class Solution2 {
+public:
+    vector<string> generateParenthesis(int n) {
+        vector<string> v;
+        backTrace(v, "", n, n);
+        return v;
+    }
+
+    void backTrace(vector<string> &v, string s, int left, int right) {
+        if (!left && !right) {
+            v.push_back(s);
+            return ;
+        }
+
+        if (left)
+            backTrace(v, s+'(', left-1, right);
+        if (right > left)
+            backTrace(v, s+')', left, right-1);
+    }
+};
+
 int main() {
     Solution s;
     vector<string> v = s.generateParenthesis(3);
