@@ -23,8 +23,8 @@ public:
             s.clear();
         }
         if (sk.empty()) return "/";
-        for (auto iter=sk.begin(); iter != sk.end(); iter++)
-            s += "/" + *iter;
+        for (string x : sk)
+            s += "/" + x;
 
         return s;
     }
