@@ -48,9 +48,40 @@ public:
     }
 };
 
+// 递归回溯
+class Solution2 {
+public:
+    vector<string> restoreIpAddresses(string s) {
+        vector<string> v;
+        if (s == "" || s.size() > 12) return v;
+
+        backTrace(v, s, "", 0, 1);
+        return v;
+    }
+
+    void backTrace(vector<string>& v, string s, string adr, int idx, int len) {
+        if (idx == 4 && s == "") {
+            adr = adr.substr(0, adr.length()-1);
+            v.push_back(adr);
+            return ;
+        } else if (idx == 4)
+            return ;
+
+        while (len <= 3 && len <= s.length()) {
+            string sub = s.substr(0, len);
+            if (len == 3 && sub > "255" || len > 1 && sub[0] == '0') {
+                len++;
+                continue;
+            }
+            backTrace(v, s.substr(len), adr+sub+'.', idx+1, 1);
+            len++;
+        }
+    }
+};
+
 int main() {
-    Solution s;
-    vector<string> v = s.restoreIpAddresses("010010");
+    Solution2 s;
+    vector<string> v = s.restoreIpAddresses("25525510135");
     for (string x : v)
         cout << x << endl;
 
