@@ -7,7 +7,7 @@ class Solution {
 public:
     vector<string> restoreIpAddresses(string s) {
         vector<string> v;
-        if (s == "") return v;
+        if (s == "" || s.size() > 12) return v;
 
         int idx = 0, i = 0, slen = s.length(), len = 1;
         vector<int> sk;
@@ -23,7 +23,7 @@ public:
                 backTrace = true;
             }
             // 回溯
-            while (backTrace || i > slen || slen-i-len > 3*(4-idx) || len > 3) {
+            while (backTrace || i > slen || idx == 4 && i < slen || len > 3) {
                 backTrace = false;
                 len = sk[sk.size()-1] + 1;
                 i = sk[sk.size()-2];
@@ -34,6 +34,7 @@ public:
             }
             if (!idx && len > 3) break;
             if (s[i] == '0' && len > 1 || len == 3 && s.substr(i, len) > "255") {
+                if (sk.empty()) break;
                 backTrace = true;
                 continue;
             }
@@ -49,7 +50,7 @@ public:
 
 int main() {
     Solution s;
-    vector<string> v = s.restoreIpAddresses("25525511135");
+    vector<string> v = s.restoreIpAddresses("010010");
     for (string x : v)
         cout << x << endl;
 
