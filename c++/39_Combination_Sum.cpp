@@ -15,11 +15,10 @@ public:
         if (!num) {
             v.push_back(cmb);
             return ;
-        } else if (num < 0) {
-            return ;
         }
 
         for (; idx >= 0; idx--) {
+            if (num - array[idx] < 0) continue;
             vector<int> x = cmb;
             x.push_back(array[idx]);
             backTrace(v, x, array, num-array[idx], idx);
