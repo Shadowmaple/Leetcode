@@ -39,6 +39,43 @@ public:
     }
 };
 
+class Solution2 {
+public:
+    vector<int> cmb;
+    int count;
+    int totalNQueens(int n) {
+        count = 0;
+        backTacking(n, 0);
+        return count;
+    }
+
+    void backTacking(int& n, int row) {
+        if (cmb.size() == n) {
+            count++;
+            return ;
+        } else if (row >= n)
+            return ;
+
+        for (int i = 0; i < n; i++) {
+            if (!isValid(i)) continue;
+
+            cmb.push_back(i);
+            backTacking(n, row+1);
+            cmb.pop_back();
+        }
+    }
+
+    bool isValid(int e) {
+        int e_row = cmb.size();
+        for (int i = 0; i < cmb.size(); i++) {
+            int col = cmb[i], row = i;
+            if (col == e || abs(col - e) == abs(row - e_row))
+                return false;
+        }
+        return true;
+    }
+};
+
 int main() {
     Solution s;
     cout << s.totalNQueens(8) << endl;
