@@ -19,3 +19,15 @@ public:
         return nums[nums.size()-1];
     }
 };
+
+// 异或运算符
+class Solution2 {
+public:
+    int singleNumber(vector<int>& nums) {
+        int result = 0;
+        for (int num : nums) {
+            result ^= num;
+        }
+        return result;
+    }
+};
