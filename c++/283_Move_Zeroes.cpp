@@ -18,3 +18,14 @@ public:
         nums.insert(nums.end(), n, 0);
     }
 };
+
+class Solution2 {
+public:
+    void moveZeroes(vector<int>& nums) {
+        // 双指针，满指针j指向0值
+        for (int i = 0, j = 0; i < nums.size(); i++) {
+            if (!nums[i]) continue;
+            swap(nums[i], nums[j++]);
+        }
+    }
+};
