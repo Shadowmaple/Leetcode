@@ -24,3 +24,29 @@ public:
         return count;
     }
 };
+
+class Solution2 {
+public:
+    int findPairs(vector<int>& nums, int k) {
+        if (k < 0) return 0;
+        int count = 0;
+        sort(begin(nums), end(nums));
+        int i = 0, j = 1;
+        while (j < nums.size()) {
+            if (nums[j] - nums[i] == k) {
+                count++;
+                i++;
+                j++;
+            } else if (nums[j] - nums[i] < k)
+                j++;
+            else i++;
+
+            while (j < nums.size() && nums[j] == nums[j-1])
+                j++;
+            while (i < nums.size() && i > 0 && nums[i] == nums[i-1])
+                i++;
+            if (i == j) j++;
+        }
+        return count;
+    }
+};
