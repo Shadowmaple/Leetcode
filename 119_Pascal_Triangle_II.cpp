@@ -12,9 +12,8 @@ public:
             pre = cur;
             cur.clear();
             for (int j=0; j <= i; j++) {
-                int l = (j == 0)? 0 : pre[j-1];
-                int r = (j == i)? 0 : pre[j];
-                cur.push_back(l + r);
+                if (j == 0 || j == i) cur.push_back(1);
+                else cur.push_back(pre[j-1]+pre[j]);
             }
         }
         return cur;
