@@ -22,17 +22,16 @@ public:
         vector<int> sv;
         q.push(root);
         while (!q.empty()) {
-            queue<TreeNode*> sq;
-            while (!q.empty()) {
+            int size = q.size();
+            for (int i=0; i < size; i++) {
                 TreeNode* t = q.front();
                 q.pop();
                 sv.push_back(t->val);
-                if (t->left) sq.push(t->left);
-                if (t->right) sq.push(t->right);
+                if (t->left) q.push(t->left);
+                if (t->right) q.push(t->right);
             }
             v.push_back(sv);
             sv.clear();
-            q = sq;
         }
         reverse(v.begin(), v.end());
         return v;
