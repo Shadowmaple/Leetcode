@@ -16,3 +16,22 @@ public:
         return 0;
     }
 };
+
+class Solution2 {
+public:
+    int majorityElement(vector<int>& nums) {
+        int maj, count = 0;
+        for (int num : nums) {
+            if (maj == num) {
+                count++;
+                continue;
+            }
+            count--;
+            if (count <= 0) {
+                maj = num;
+                count = 1;
+            }
+        }
+        return maj;
+    }
+};
