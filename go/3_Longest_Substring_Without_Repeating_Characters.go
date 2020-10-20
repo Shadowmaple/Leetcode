@@ -1,5 +1,7 @@
 package leetcode
 
+import "strings"
+
 func lengthOfLongestSubstring(s string) int {
 	if s == "" {
 		return 0
@@ -28,4 +30,21 @@ func lengthOfLongestSubstring(s string) int {
 		}
 	}
 	return max
+}
+
+// 滑动窗口
+func lengthOfLongestSubstring2(s string) int {
+	var l, r int
+	count := 0
+	for ; r < len(s); r++ {
+		i := strings.Index(s[l:r], s[r])
+		if i != -1 {
+			l += i + 1
+			continue
+		}
+		if count < r-l+1 {
+			count = r - l + 1
+		}
+	}
+	return count
 }
