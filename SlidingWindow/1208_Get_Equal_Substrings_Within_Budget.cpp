@@ -31,3 +31,23 @@ public:
         return len;
     }
 };
+
+// better, quicker and more concise solution
+class Solution2 {
+public:
+    int equalSubstring(string s, string t, int maxCost) {
+        int len = 0, count = 0;
+        int l = 0, r = 0;
+        int cost = 0;
+        while (r < s.length()) {
+            cost += abs(s[r] - t[r]);
+            while (cost > maxCost) {
+                cost -= abs(s[l] - t[l]);
+                l++;
+            }
+            len = max(len, r - l + 1);
+            r++;
+        }
+        return len;
+    }
+};
