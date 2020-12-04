@@ -39,15 +39,4 @@ public:
         }
         return -1;
     }
-
-    void change(string cur, set<string>& st, set<string>& dead) {
-        for (int i = 0; i < 4; i++) {
-            string s1 = cur, s2 = cur;
-            s1[i] = s1[i] < '9'? s1[i] + 1:'0';
-            s2[i] = s2[i] > '0'? s2[i] - 1:'9';
-            cout << s1 << "--" << s2 << endl;
-            if (!dead.count(s1)) st.insert(s1);
-            if (!dead.count(s2)) st.insert(s2);
-        }
-    }
 };
