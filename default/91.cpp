@@ -22,3 +22,27 @@ public:
         return dp[len];
     }
 };
+
+// dfs，超时
+class Solution2 {
+public:
+    int res;
+    int numDecodings(string s) {
+        res = 0;
+        dfs(s, 0);
+        return res;
+    }
+
+    void dfs(string& s, int idx) {
+        if (idx == s.length()) {
+            res++;
+            return ;
+        }
+        if (s[idx] == '0') return ;
+        dfs(s, idx+1);
+        if (idx+1 == s.length()) return ;
+        if (s[idx] == '1' || s[idx] == '2' && s[idx+1] <= '6') {
+            dfs(s, idx+2);
+        }
+    }
+};
